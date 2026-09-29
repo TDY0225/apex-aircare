@@ -1,0 +1,289 @@
+import Image from "next/image";
+import Link from "next/link";
+import { Container } from "@/components/container";
+import { Icon } from "@/components/icon";
+import { LinkButton } from "@/components/link-button";
+import { QuoteForm } from "@/components/quote-form";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { serviceAreas } from "@/content/site";
+import { services } from "@/content/services";
+import { getWhatsAppHref } from "@/lib/whatsapp";
+
+function AreaIllustration() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="area-illustration"
+      viewBox="0 0 420 360"
+      fill="none"
+    >
+      <path d="M62 222 102 174l18-67 61-31 36 29 51-26 40 29 51 1 16 53-38 32 9 46-45 23-20 50-65 2-29-35-54 10-34-39-46 9-25-38Z" />
+      <path d="m120 107 45 49 16-80m0 80 54-51 22 70 53-67m-75 67 49 55 38-55m-87 0-42 67m42-67-63 7-50 40m113 20 20 73m-62-73-22 50m126-105 56 32" />
+      <circle cx="165" cy="156" r="5" />
+      <circle cx="235" cy="156" r="5" />
+      <circle cx="257" cy="226" r="5" />
+      <circle cx="195" cy="223" r="5" />
+      <circle cx="111" cy="203" r="5" />
+      <circle cx="307" cy="138" r="5" />
+      <circle cx="277" cy="278" r="5" />
+      <circle cx="258" cy="156" r="10" />
+    </svg>
+  );
+}
+
+export default function Home() {
+  const whatsappHref = getWhatsAppHref();
+
+  return (
+    <>
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
+      <SiteHeader whatsappHref={whatsappHref} />
+      <main id="main-content">
+        <section className="hero" id="home" aria-labelledby="hero-title">
+          <Container className="hero-grid">
+            <div className="hero-copy">
+              <p className="eyebrow">
+                <span className="eyebrow-dot" aria-hidden="true" />
+                A fictional service concept for Kuala Lumpur &amp; Klang Valley
+              </p>
+              <h1 id="hero-title">
+                Cooler Homes.
+                <br />
+                <span>Happier Days.</span>
+              </h1>
+              <p className="hero-description">
+                Air-conditioning servicing, repair, installation and cleaning
+                for homes and small businesses. Explore a clear, considered
+                service experience created as a portfolio demonstration.
+              </p>
+              <div className="hero-actions">
+                <LinkButton href="#quote" icon="arrow">
+                  Request a Quote
+                </LinkButton>
+                <LinkButton href="#services" variant="secondary">
+                  Explore Services
+                </LinkButton>
+              </div>
+              <ul className="principle-list" aria-label="Service principles">
+                <li>
+                  <Icon name="check" />
+                  <span>Clear scope</span>
+                </li>
+                <li>
+                  <Icon name="check" />
+                  <span>Careful service</span>
+                </li>
+                <li>
+                  <Icon name="check" />
+                  <span>Straightforward next steps</span>
+                </li>
+              </ul>
+            </div>
+            <div className="hero-visual">
+              <div className="hero-photo-wrap">
+                <Image
+                  src="/images/hero-indoor-technician.jpg"
+                  alt="Illustrative photograph of a technician checking air-conditioning equipment indoors"
+                  fill
+                  priority
+                  sizes="(max-width: 760px) 100vw, (max-width: 1200px) 50vw, 610px"
+                  className="hero-photo"
+                />
+                <span className="photo-caption">
+                  Illustrative service photography
+                </span>
+              </div>
+              <div className="hero-note">
+                <span className="hero-note-icon">
+                  <Icon name="snow" />
+                </span>
+                <div>
+                  <strong>Comfort starts with a clear plan.</strong>
+                  <p>Understand the service before choosing a next step.</p>
+                </div>
+              </div>
+              <div className="hero-image-index" aria-hidden="true">
+                <span>APEX AIRCARE</span>
+                <span>01 / 04</span>
+              </div>
+            </div>
+          </Container>
+        </section>
+
+        <section className="services-section section-pad" id="services" aria-labelledby="services-title">
+          <Container>
+            <div className="section-heading-row">
+              <div className="section-heading">
+                <p className="section-kicker">Our services</p>
+                <h2 id="services-title">The right care for your aircon.</h2>
+                <p>
+                  Start with what you have noticed. These service guides make it
+                  easier to understand what to ask about.
+                </p>
+              </div>
+              <span className="section-side-note">Homes · Offices · Small business</span>
+            </div>
+            <div className="service-grid">
+              {services.map((service, index) => (
+                <article className="service-card" key={service.slug}>
+                  <Link
+                    className="service-image-link"
+                    href="#quote"
+                    aria-label={`Ask about ${service.name}`}
+                  >
+                    <div className="service-image-wrap">
+                      <Image
+                        src={service.image}
+                        alt={service.imageAlt}
+                        fill
+                        sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 285px"
+                        className="service-image"
+                      />
+                    </div>
+                    <span className="service-number">0{index + 1}</span>
+                  </Link>
+                  <div className="service-card-body">
+                    <h3>{service.name}</h3>
+                    <p>{service.description}</p>
+                    <Link className="text-link" href="#quote">
+                      Ask about this service <Icon name="arrow" />
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Container>
+        </section>
+
+        <section className="approach-section" id="about" aria-labelledby="approach-title">
+          <Container className="approach-grid">
+            <div className="approach-photo-wrap">
+              <Image
+                src="/images/aircon-servicing.jpg"
+                alt="Illustrative close-up of a technician working on an air-conditioning unit"
+                fill
+                sizes="(max-width: 800px) 100vw, 48vw"
+                className="approach-photo"
+              />
+              <span className="image-stamp">A service-first concept</span>
+            </div>
+            <div className="approach-copy">
+              <p className="section-kicker">The Apex approach</p>
+              <h2 id="approach-title">More clarity at every step.</h2>
+              <p className="approach-lead">
+                Apex AirCare is a fictional brand concept built around a simple
+                idea: good service begins with useful information and a
+                straightforward conversation.
+              </p>
+              <ul className="approach-points">
+                <li>
+                  <span className="approach-icon"><Icon name="message" /></span>
+                  <div><strong>Explain the scope</strong><p>Make the service options easier to understand.</p></div>
+                </li>
+                <li>
+                  <span className="approach-icon"><Icon name="home" /></span>
+                  <div><strong>Respect the space</strong><p>Show care for the home or workplace in the service plan.</p></div>
+                </li>
+                <li>
+                  <span className="approach-icon"><Icon name="arrow" /></span>
+                  <div><strong>Keep next steps simple</strong><p>Help visitors know what information to share.</p></div>
+                </li>
+              </ul>
+              <Link className="text-link approach-link" href="#process">
+                How the process works <Icon name="arrow" />
+              </Link>
+            </div>
+          </Container>
+        </section>
+
+        <section className="areas-section section-pad" id="areas" aria-labelledby="areas-title">
+          <Container className="areas-grid">
+            <div className="areas-copy">
+              <p className="section-kicker section-kicker-light">Illustrative service areas</p>
+              <h2 id="areas-title">A local concept for Kuala Lumpur &amp; Klang Valley.</h2>
+              <p>
+                The locations below are examples used to shape this portfolio
+                concept. They are not a statement of real-world availability or
+                current business coverage.
+              </p>
+              <ul className="area-list">
+                {serviceAreas.map((area) => (
+                  <li key={area}><Icon name="pin" />{area}</li>
+                ))}
+              </ul>
+              <Link className="areas-link" href="#quote">
+                Ask about an area <Icon name="arrow" />
+              </Link>
+            </div>
+            <div className="areas-visual" aria-hidden="true">
+              <AreaIllustration />
+              <span className="area-map-label">KLANG VALLEY</span>
+              <span className="map-caption">Illustrative diagram · not to scale</span>
+            </div>
+          </Container>
+        </section>
+
+        <section className="process-section section-pad" id="process" aria-labelledby="process-title">
+          <Container>
+            <div className="section-heading process-heading">
+              <p className="section-kicker">What to expect</p>
+              <h2 id="process-title">A simple way to get started.</h2>
+              <p>
+                This process preview replaces sample testimonials with useful,
+                honest guidance. It describes the intended experience of the
+                fictional concept, not a live service operation.
+              </p>
+            </div>
+            <ol className="process-grid">
+              <li className="process-step">
+                <span className="step-number">01</span>
+                <h3>Share what you noticed</h3>
+                <p>Choose a service type and describe the air-conditioning issue or plan.</p>
+              </li>
+              <li className="process-step">
+                <span className="step-number">02</span>
+                <h3>Clarify the service scope</h3>
+                <p>Discuss what may be needed before deciding on a visit or next step.</p>
+              </li>
+              <li className="process-step">
+                <span className="step-number">03</span>
+                <h3>Review the way forward</h3>
+                <p>Understand the proposed work and any details that still need checking.</p>
+              </li>
+            </ol>
+          </Container>
+        </section>
+
+        <section className="quote-section section-pad" id="quote" aria-labelledby="quote-title">
+          <Container className="quote-grid">
+            <div className="quote-copy">
+              <p className="section-kicker">Contact concept</p>
+              <h2 id="quote-title">Get a clearer starting point.</h2>
+              <p>
+                Use the form to preview an enquiry flow. This fictional demo is
+                not connected to a service provider, and it does not send or
+                save the information entered here.
+              </p>
+              <div className="demo-contact-card">
+                <span className="demo-contact-icon"><Icon name="message" /></span>
+                <div>
+                  <strong>WhatsApp is not configured</strong>
+                  <p>No number is connected in this portfolio demo.</p>
+                </div>
+              </div>
+              <p className="demo-notice">
+                <Icon name="info" />
+                Portfolio demonstration only. No real enquiries are received.
+              </p>
+            </div>
+            <QuoteForm />
+          </Container>
+        </section>
+      </main>
+      <SiteFooter />
+    </>
+  );
+}
