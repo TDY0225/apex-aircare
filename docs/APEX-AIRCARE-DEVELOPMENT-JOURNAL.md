@@ -218,8 +218,8 @@ Phase 2.5B controlled fixes are complete. Do not begin the independent Impeccabl
 | ESLint | PASS — `npm run lint` |
 | TypeScript | PASS — `npx tsc --noEmit` |
 | Production build | PASS — `npm run build`; static routes generated and `/api/quote` remains dynamic |
-| Quote boundary | PASS — valid 200; missing fields 400; malformed JSON 400; wrong content type 415; foreign origin 403; honeypot 400; too-fast submission 400 |
-| Route and responsive review | PASS — all ten routes returned 200 with one h1; the in-app browser opened the local app for visual review, and the new route layouts include explicit 760 px/430 px responsive overrides. No supported standalone browser executable was available for automated viewport metrics. |
+| Quote boundary | PASS — valid 200; missing fields 400; malformed JSON 400; wrong content type 415; foreign origin 403; honeypot 400; future timestamp 400. The immediate-timestamp probe returned 200 because more than 800 ms elapsed before handler evaluation, so a true sub-800 ms rejection was not demonstrated. |
+| Route and responsive review | Route HTTP checks PASS — all ten routes returned 200 with one h1. Source review confirmed 760 px/430 px responsive overrides. Responsive browser viewport validation and visual screenshot inspection were NOT PERFORMED; no supported browser automation was available. |
 | Automated test suite | NOT PRESENT; no suite added |
 | Hydration | **NOT REPRODUCED / ROOT CAUSE UNKNOWN**; no new root-cause claim |
 | IMP-001 | **DEFERRED** pending production CWV/performance evidence; no speculative LCP fix |
@@ -292,3 +292,42 @@ Independent Impeccable audit is complete. Leave findings visible for owner revie
 ### Current gate
 
 Audit closeout is complete. Phase 3 is ready for a separate authorization decision, but was not started in this task.
+
+## Phase 3.5 Independent Functional / UX / Production-Readiness Review — 2026-09-30
+
+### Review boundary
+
+- Reviewed accepted baseline `190f316e364819273ce0d70a580ef08f199ade9c` on `main`; `origin/main` matched.
+- The only pre-existing working-tree item was the intentionally local, untracked `docs/phase-2.5a-evidence/` directory. It was not added.
+- Audit only: no application source, dependency, configuration, refactor, deployment, implementation commit, push, or next phase was performed.
+- The complete Phase 2.5 Impeccable suite was not rerun. Its accepted findings remain regression constraints.
+
+### Findings summary
+
+- The connected journey from homepage through service discovery, service detail, contact quote flow, and demo completion is coherent and commercially credible for a fictional portfolio concept.
+- All four service-detail routes were reviewed for differentiated scope, truthful copy, useful next steps, and clear conversion paths.
+- The quote lifecycle and server boundary remain proportionate: client feedback states are separate from authoritative server validation; sanitized errors, origin/content-type/body-size checks, honeypot, and minimum-duration logic are present.
+- The DemoLeadProvider does not persist, log, email, forward, or claim receipt of submitted values. WhatsApp remains environment-configured and absent safely when unset.
+- Privacy, truthfulness, noindex metadata, internal linking, and no-LocalBusiness-schema constraints remain aligned.
+- No P0, P1, or P2 finding was confirmed.
+- P3 recommendations remain deferred to production-readiness/release validation: consider a small API regression suite with deterministic timing, measure production CWV for IMP-001, and repeat browser/assistive-technology checks when supported capabilities are available. No tests are added now.
+
+### Capability states
+
+- Product Design: **INSPECTED**.
+- Taste guidance: **INSPECTED**.
+- Impeccable: **INSPECTED FROM ACCEPTED PRIOR RESULT**; complete suite not rerun.
+- Bencho: **INSPECTED; CONCEPT ADOPTED; no IMPLEMENTED BLOCK**. Existing CSS `:active` CTA feedback is useful; magnetic select, carousel, upload dropzone, and toast replacement remain rejected or deferred.
+- UI UX Pro Max: **UNAVAILABLE**. In-app browser automation: **UNAVAILABLE FOR AUTOMATED CONTROL IN THIS RUN**. Galaxy, Refero, and screenshot-to-code were **NOT RELEVANT**; GSAP runtime was **REJECTED**.
+
+### Evidence limitations and status
+
+- All ten expected routes returned HTTP 200. Lint, TypeScript, build, diff check, and deterministic quote API checks passed (`200`, `400`, `403`, `415`).
+- No supported standalone browser executable was available for exact 375/768/1024/1440 viewport metrics, screenshots, console inspection, screen-reader checks, axe, contrast, or WCAG certification. No browser result beyond the available route/source evidence is claimed.
+- Hydration remains **NOT REPRODUCED / ROOT CAUSE UNKNOWN**.
+- `IMP-001` remains **DEFERRED** pending production CWV/LCP evidence.
+- No automated test suite exists. A focused API regression suite is recommended as P3 only; none was added in this audit.
+
+### Current gate
+
+Phase 3.5 review is complete and documented in `docs/APEX-AIRCARE-PHASE-3.5-REVIEW.md`. The owner accepted the review; Phase 3.5B is not required. P3 items remain deferred to production-readiness/release validation. Do not fix findings, deploy, or begin Phase 4 without separate authorization.
