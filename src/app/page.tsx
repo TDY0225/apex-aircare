@@ -49,7 +49,7 @@ export default function Home() {
                 <span className="eyebrow-dot" aria-hidden="true" />
                 A fictional service concept for Kuala Lumpur &amp; Klang Valley
               </p>
-              <h1 id="hero-title">
+                <h1 id="hero-title" tabIndex={-1}>
                 Cooler Homes.
                 <br />
                 <span>Happier Days.</span>
@@ -105,10 +105,6 @@ export default function Home() {
                   <p>Understand the service before choosing a next step.</p>
                 </div>
               </div>
-              <div className="hero-image-index" aria-hidden="true">
-                <span>APEX AIRCARE</span>
-                <span>01 / 04</span>
-              </div>
             </div>
           </Container>
         </section>
@@ -118,7 +114,7 @@ export default function Home() {
             <div className="section-heading-row">
               <div className="section-heading">
                 <p className="section-kicker">Our services</p>
-                <h2 id="services-title">The right care for your aircon.</h2>
+                <h2 id="services-title" tabIndex={-1}>The right care for your aircon.</h2>
                 <p>
                   Start with what you have noticed. These service guides make it
                   easier to understand what to ask about.
@@ -172,7 +168,7 @@ export default function Home() {
             </div>
             <div className="approach-copy">
               <p className="section-kicker">The Apex approach</p>
-              <h2 id="approach-title">More clarity at every step.</h2>
+              <h2 id="approach-title" tabIndex={-1}>More clarity at every step.</h2>
               <p className="approach-lead">
                 Apex AirCare is a fictional brand concept built around a simple
                 idea: good service begins with useful information and a
@@ -203,7 +199,7 @@ export default function Home() {
           <Container className="areas-grid">
             <div className="areas-copy">
               <p className="section-kicker section-kicker-light">Illustrative service areas</p>
-              <h2 id="areas-title">A local concept for Kuala Lumpur &amp; Klang Valley.</h2>
+              <h2 id="areas-title" tabIndex={-1}>A local concept for Kuala Lumpur &amp; Klang Valley.</h2>
               <p>
                 The locations below are examples used to shape this portfolio
                 concept. They are not a statement of real-world availability or
@@ -230,7 +226,7 @@ export default function Home() {
           <Container>
             <div className="section-heading process-heading">
               <p className="section-kicker">What to expect</p>
-              <h2 id="process-title">A simple way to get started.</h2>
+              <h2 id="process-title" tabIndex={-1}>A simple way to get started.</h2>
               <p>
                 This process preview replaces sample testimonials with useful,
                 honest guidance. It describes the intended experience of the
@@ -261,7 +257,7 @@ export default function Home() {
           <Container className="quote-grid">
             <div className="quote-copy">
               <p className="section-kicker">Contact concept</p>
-              <h2 id="quote-title">Get a clearer starting point.</h2>
+              <h2 id="quote-title" tabIndex={-1}>Get a clearer starting point.</h2>
               <p>
                 Use the form to preview an enquiry flow. This fictional demo is
                 not connected to a service provider, and it does not send or

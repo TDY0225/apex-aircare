@@ -23,6 +23,24 @@ export function SiteHeader({ whatsappHref }: { whatsappHref: string | null }) {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const handleMobileNavigation = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    closeMenu();
+
+    if (event.detail !== 0 || !href.startsWith("#")) return;
+
+    const targetId = href.slice(1);
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        const section = document.getElementById(targetId);
+        const heading = section?.querySelector<HTMLElement>("h1, h2, h3");
+        heading?.focus({ preventScroll: true });
+      });
+    });
+  };
+
   return (
     <>
       <div className="demo-ribbon">
@@ -69,14 +87,26 @@ export function SiteHeader({ whatsappHref }: { whatsappHref: string | null }) {
           hidden={!menuOpen}
         >
           {navigation.map((item) => (
-            <Link key={item.label} href={item.href} onClick={closeMenu}>{item.label}</Link>
+            <Link
+              key={item.label}
+              href={item.href}
+              onClick={(event) => handleMobileNavigation(event, item.href)}
+            >
+              {item.label}
+            </Link>
           ))}
           {whatsappHref ? (
             <a className="mobile-whatsapp" href={whatsappHref} onClick={closeMenu} target="_blank" rel="noreferrer">
               WhatsApp <Icon name="arrow" />
             </a>
           ) : null}
-          <Link className="mobile-nav-cta" href="#quote" onClick={closeMenu}>Request a Quote <Icon name="arrow" /></Link>
+          <Link
+            className="mobile-nav-cta"
+            href="#quote"
+            onClick={(event) => handleMobileNavigation(event, "#quote")}
+          >
+            Request a Quote <Icon name="arrow" />
+          </Link>
         </nav>
       </header>
     </>
