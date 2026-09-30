@@ -188,3 +188,66 @@ Dependencies changed: **none**.
 ### Current gate
 
 Phase 2.5B controlled fixes are complete. Do not begin the independent Impeccable audit automatically, start Phase 3, or deploy.
+
+## Independent Impeccable Audit — 2026-09-30
+
+### Boundary and baseline
+
+- Audited accepted baseline `084830b9e26b61b42bcd3d6ce8420d9dc32d9bad` on `main`; `origin/main` matched.
+- Application source, styles, components, configuration, dependencies, hooks, and deployment state were not changed.
+- The only pre-existing working-tree item was the untracked local evidence directory `docs/phase-2.5a-evidence/`.
+- Phase 3 was not started, no findings were fixed, and nothing was pushed.
+
+### Impeccable capability state
+
+- **AVAILABLE:** official `pbakaus/impeccable` source, `impeccable.style` documentation, and npm CLI.
+- **INSTALLED:** no project-local skill or harness bundle.
+- **EXECUTABLE:** `npx --yes impeccable --version` returned `4.1.0`; `detect` ran against `src/`.
+- **USED:** deterministic source detector; it reported two `side-tab` warnings at `globals.css` lines 158 and 226.
+- **PARTIALLY USED:** official audit categories were applied to rendered production browser inspection.
+- **BLOCKED:** URL detector due no Chrome, Chromium, Edge, or Brave executable available to the CLI; no Codex-native Impeccable skill command was installed.
+- No Impeccable files or hooks were created. No runtime dependency changed. The transient npx resolution used the configured npm cache `D:\DevCache\npm`.
+
+### Audit outcome
+
+- P0: none.
+- P1: none.
+- P2: none requiring an authorized fix.
+- P3: `IMP-001`, an unquantified Next.js development-only LCP advisory; production console was clean, so it remains a measurement follow-up rather than a confirmed application defect.
+- The two `side-tab` matches are recorded as rejected recommendations because the image stamp and persistent form-status border have intentional contextual/functional roles.
+- Production responsive QA at 375/768/1024/1440 px found zero horizontal overflow. Keyboard menu focus, Escape restoration, destination-heading focus, form live status, heading structure, and truthful demo disclosure passed.
+- Hydration status remains **NOT REPRODUCED / ROOT CAUSE UNKNOWN**.
+
+### Validation
+
+| Check | Result |
+|---|---|
+| `npm run lint` | PASS |
+| `npx tsc --noEmit` | PASS |
+| `npm run build` | PASS |
+| Production browser QA | PASS |
+| Production browser console | PASS; no warning/error entries |
+| Impeccable source detector | PARTIAL; two warnings, exit code 1 |
+| Impeccable URL detector | BLOCKED by missing supported browser executable |
+| Automated test suite | NOT PRESENT |
+
+Detailed findings, evidence, rejected recommendations, versions, and exact capability states are recorded in `docs/APEX-AIRCARE-IMPECCABLE-AUDIT.md`.
+
+### Current gate
+
+Independent Impeccable audit is complete. Leave findings visible for owner review. Do not fix findings, create an application/release commit, push, deploy, or begin Phase 3.
+
+## Independent Impeccable Audit Acceptance — 2026-09-30
+
+- Owner accepted the completed independent audit.
+- No Phase 2.5C implementation is required.
+- P0: none; P1: none; P2 requiring fixes: none.
+- `IMP-001` remains **DEFERRED** as a P3 observation pending production CWV/performance evidence.
+- The two `side-tab` detector findings remain rejected false positives.
+- Hydration remains **NOT REPRODUCED / ROOT CAUSE UNKNOWN**.
+- Capability limitations remain literal: the source detector was partially used, the URL detector was blocked by the missing supported browser executable, and no complete Impeccable suite is claimed.
+- No application source, dependency, configuration, hook, deployment, or Phase 3 change was made. No Phase 2.5C work is pending.
+
+### Current gate
+
+Audit closeout is complete. Phase 3 is ready for a separate authorization decision, but was not started in this task.
