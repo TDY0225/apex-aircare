@@ -380,3 +380,36 @@ Phase 3.5 review is complete and documented in `docs/APEX-AIRCARE-PHASE-3.5-REVI
 - Reusable Nexus lessons recorded in `docs/APEX-AIRCARE-PHASE-4A-PRODUCTION-READINESS.md`: prove baselines, separate phase and deployment gates, implement narrow evidence-backed fixes, test API boundaries deterministically, distinguish app behavior from host processing, and label capability limits truthfully.
 
 The complete audit evidence and environment-variable list are in `docs/APEX-AIRCARE-PHASE-4A-PRODUCTION-READINESS.md`.
+
+## Phase 4C Live Production Acceptance — 2026-09-30
+
+### Release identity and live deployment
+
+- At the start of Phase 4C, local `main`, `HEAD`, `origin/main`, and the remote `main` SHA all matched `3f26331bf4d0653d7cb5a6a303775eade3439978`.
+- Vercel's authenticated project overview showed the production deployment as **Current / Latest / Ready**, on `main`, sourced from that full accepted SHA, with `https://apex-aircare.vercel.app` as the stable production domain.
+- The Vercel environment settings view listed `NEXT_PUBLIC_SITE_URL` for Production and had system environment variable access enabled. Its value was masked in the UI; live canonical and OG image URLs independently resolve to the exact production origin. `NEXT_PUBLIC_WHATSAPP_NUMBER` was not listed and remains unset.
+- `docs/phase-2.5a-evidence/` remains local and untracked.
+
+### Live acceptance evidence
+
+- All ten requested public routes returned HTTP 200. An unknown path and unknown service slug returned genuine HTTP 404. `/robots.txt` returned `text/plain`, and `/opengraph-image` returned `image/png`.
+- Production metadata had route-specific titles/descriptions, exact-origin canonicals and OG image URLs, `noindex,nofollow` on public pages, and no JSON-LD business schema. Robots disallows `/api/`. The OG image was visually checked and clearly calls Apex a fictional portfolio demonstration.
+- At 375, 768, 1024, and 1440 px, six representative routes had no positive horizontal overflow or interactive controls outside the viewport. Mobile menu open/Escape/focus return, skip-link focus, label associations, invalid form error association/focus, and successful synthetic demo status were checked in the production browser.
+- Synthetic quote API checks returned: valid 200; invalid fields 400; unsupported content type 415; malformed JSON 400; foreign Origin 403; honeypot 400; future timestamp 400. Responses had JSON content type, `no-store`, and `nosniff`; no stack trace or synthetic value was echoed. The live form's success copy accurately states that data is validated by this application and not retained or forwarded to a lead system.
+- WhatsApp remains unconfigured and no `wa.me` link is present. Privacy copy distinguishes application handling from possible hosting-platform processing. No real provider, CRM, email, analytics, database, or external distributed rate limiter was activated.
+- The production app console had no warning/error entries during the review. Hydration remains **NOT REPRODUCED / ROOT CAUSE UNKNOWN**.
+- No axe, screen-reader, formal WCAG, Lighthouse, or production CWV validation was performed. Vercel Speed Insights was **Not Enabled**; `IMP-001` remains **DEFERRED** as P3.
+- The quote API responses carried no-store/nosniff. Those headers were not present on observed public HTML GET responses; no broader security-header configuration or infrastructure protection is claimed.
+
+### Vercel build warnings and findings
+
+- The Vercel production build was Ready and displayed two build warnings. `eslint@9.39.5` reported that it is no longer supported (**P2**, development-tooling maintenance). npm reported `unrs-resolver@1.12.2`'s postinstall was not yet covered by `allowScripts` (**P3**, install-script policy review; deployment build and live behavior succeeded, and no blanket approval was made).
+- A separate Deployment Settings panel showed optional recommendations for concurrent builds, skew protection, and buying a custom domain. They were not Build Logs warnings and no changes were made.
+- Final local checks passed: `npm test` (8/8), lint, TypeScript, production build, and `git diff --check`.
+- Release findings: **P0 none; P1 none; P2 unsupported ESLint tooling; P3 unreviewed install-script policy notice, optional platform recommendations, optional global header hardening, IMP-001, and unavailable performance/accessibility evidence.** No item invalidated this fictional portfolio-demo release.
+
+### Closeout and reusable Nexus lessons
+
+- Phase 4C is **ACCEPTED**. The deployed application remains source SHA `3f26331bf4d0653d7cb5a6a303775eade3439978`; the later documentation-only release commit does not change application code.
+- Only this live-acceptance report and this journal entry are included in the Phase 4C documentation commit. No application source, dependency, configuration, Vercel variable, or production setting was changed.
+- Reusable lesson: prove release identity at source control, Vercel, and live HTTP/browser layers; keep evidence limitations literal; review npm install-script notices without broad approvals; and do not treat optional platform recommendations or missing CWV evidence as measured application failures.
