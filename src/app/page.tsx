@@ -2,35 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { Icon } from "@/components/icon";
+import { AreaIllustration } from "@/components/area-illustration";
 import { LinkButton } from "@/components/link-button";
 import { QuoteForm } from "@/components/quote-form";
+import { ServiceCard } from "@/components/service-card";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { serviceAreas } from "@/content/site";
 import { services } from "@/content/services";
 import { getWhatsAppHref } from "@/lib/whatsapp";
-
-function AreaIllustration() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="area-illustration"
-      viewBox="0 0 420 360"
-      fill="none"
-    >
-      <path d="M62 222 102 174l18-67 61-31 36 29 51-26 40 29 51 1 16 53-38 32 9 46-45 23-20 50-65 2-29-35-54 10-34-39-46 9-25-38Z" />
-      <path d="m120 107 45 49 16-80m0 80 54-51 22 70 53-67m-75 67 49 55 38-55m-87 0-42 67m42-67-63 7-50 40m113 20 20 73m-62-73-22 50m126-105 56 32" />
-      <circle cx="165" cy="156" r="5" />
-      <circle cx="235" cy="156" r="5" />
-      <circle cx="257" cy="226" r="5" />
-      <circle cx="195" cy="223" r="5" />
-      <circle cx="111" cy="203" r="5" />
-      <circle cx="307" cy="138" r="5" />
-      <circle cx="277" cy="278" r="5" />
-      <circle cx="258" cy="156" r="10" />
-    </svg>
-  );
-}
 
 export default function Home() {
   const whatsappHref = getWhatsAppHref();
@@ -60,10 +40,10 @@ export default function Home() {
                 service experience created as a portfolio demonstration.
               </p>
               <div className="hero-actions">
-                <LinkButton href="#quote" icon="arrow">
+                <LinkButton href="/contact#quote" icon="arrow">
                   Request a Quote
                 </LinkButton>
-                <LinkButton href="#services" variant="secondary">
+                <LinkButton href="/services" variant="secondary">
                   Explore Services
                 </LinkButton>
               </div>
@@ -123,33 +103,7 @@ export default function Home() {
               <span className="section-side-note">Homes · Offices · Small business</span>
             </div>
             <div className="service-grid">
-              {services.map((service, index) => (
-                <article className="service-card" key={service.slug}>
-                  <Link
-                    className="service-image-link"
-                    href="#quote"
-                    aria-label={`Ask about ${service.name}`}
-                  >
-                    <div className="service-image-wrap">
-                      <Image
-                        src={service.image}
-                        alt={service.imageAlt}
-                        fill
-                        sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 285px"
-                        className="service-image"
-                      />
-                    </div>
-                    <span className="service-number">0{index + 1}</span>
-                  </Link>
-                  <div className="service-card-body">
-                    <h3>{service.name}</h3>
-                    <p>{service.description}</p>
-                    <Link className="text-link" href="#quote">
-                      Ask about this service <Icon name="arrow" />
-                    </Link>
-                  </div>
-                </article>
-              ))}
+              {services.map((service, index) => <ServiceCard key={service.slug} service={service} index={index} />)}
             </div>
           </Container>
         </section>
@@ -188,7 +142,7 @@ export default function Home() {
                   <div><strong>Keep next steps simple</strong><p>Help visitors know what information to share.</p></div>
                 </li>
               </ul>
-              <Link className="text-link approach-link" href="#process">
+              <Link className="text-link approach-link" href="/#process">
                 How the process works <Icon name="arrow" />
               </Link>
             </div>
@@ -210,7 +164,7 @@ export default function Home() {
                   <li key={area}><Icon name="pin" />{area}</li>
                 ))}
               </ul>
-              <Link className="areas-link" href="#quote">
+              <Link className="areas-link" href="/service-areas">
                 Ask about an area <Icon name="arrow" />
               </Link>
             </div>
@@ -259,9 +213,9 @@ export default function Home() {
               <p className="section-kicker">Contact concept</p>
               <h2 id="quote-title" tabIndex={-1}>Get a clearer starting point.</h2>
               <p>
-                Use the form to preview an enquiry flow. This fictional demo is
-                not connected to a service provider, and it does not send or
-                save the information entered here.
+                Use the form to preview a complete quote flow. This fictional
+                demo validates the request on the server boundary, but it does
+                not send or save the information entered here.
               </p>
               <div className="demo-contact-card">
                 <span className="demo-contact-icon"><Icon name="message" /></span>

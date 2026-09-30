@@ -189,6 +189,47 @@ Dependencies changed: **none**.
 
 Phase 2.5B controlled fixes are complete. Do not begin the independent Impeccable audit automatically, start Phase 3, or deploy.
 
+## Phase 3 Conversion Flow & Functional Business Experience — 2026-09-30
+
+### Scope and implementation
+
+- Added route-level experiences for `/`, `/services`, `/services/[service]`, `/about`, `/service-areas`, `/contact`, and `/privacy` while preserving the accepted navy, blue, white, image-led local-service direction.
+- Added shared route shells, service cards, service detail content, contextual metadata, truthful fictional-demo notices, and route links from the header, footer, and homepage.
+- Kept route metadata and the existing site-wide `noindex` posture. No `LocalBusiness` schema, fabricated contact details, reviews, ratings, guarantees, coverage claims, or business proof were added.
+
+### Quote flow and boundary
+
+- Replaced the local-only preview with an accessible idle → invalid → submitting → success/error flow backed by `POST /api/quote`.
+- The route performs content-type, body-size, same-origin, JSON parsing, normalized field validation, service allowlisting, sanitized error, honeypot, and minimum-submission-time checks.
+- `LeadProvider` and `DemoLeadProvider` define the provider seam. The demo provider accepts validated input without persisting, logging, emailing, sending to WhatsApp, or storing personal information.
+- The client marks invalid fields with `aria-invalid` and `aria-describedby`, moves focus to a persistent error summary, exposes submitting/success status through a polite live region, and disables duplicate submission while pending.
+- WhatsApp remains configuration-driven through `NEXT_PUBLIC_WHATSAPP_NUMBER`; when absent, the contact page explains that the demo channel is not configured.
+
+### Bencho evaluation
+
+- **USE (concept only):** tactile CTA press feedback already implemented with the existing CSS `:active` and focus states, matching the Phase 1 decision matrix without adding Bencho code, a dependency, or a runtime.
+- **REJECT:** magnetic service selection, mobile carousel, and photo upload because native controls and the complete service list are clearer and safer for this fictional flow.
+- **DEFER:** before/after slider and contact toast because authentic paired imagery and a persistent inline status provide the stronger truthful and accessible path.
+
+### Validation and limitations
+
+| Check | Result |
+|---|---|
+| ESLint | PASS — `npm run lint` |
+| TypeScript | PASS — `npx tsc --noEmit` |
+| Production build | PASS — `npm run build`; static routes generated and `/api/quote` remains dynamic |
+| Quote boundary | PASS — valid 200; missing fields 400; malformed JSON 400; wrong content type 415; foreign origin 403; honeypot 400; too-fast submission 400 |
+| Route and responsive review | PASS — all ten routes returned 200 with one h1; the in-app browser opened the local app for visual review, and the new route layouts include explicit 760 px/430 px responsive overrides. No supported standalone browser executable was available for automated viewport metrics. |
+| Automated test suite | NOT PRESENT; no suite added |
+| Hydration | **NOT REPRODUCED / ROOT CAUSE UNKNOWN**; no new root-cause claim |
+| IMP-001 | **DEFERRED** pending production CWV/performance evidence; no speculative LCP fix |
+
+No deployment or Phase 3.5 work was started. Existing local `docs/phase-2.5a-evidence/` remains untracked and excluded from the application commit.
+
+### Current gate
+
+Phase 3 implementation and code-level validation are complete. The local route review is complete; open the Phase 3.5 review gate only as a separate owner-authorized step.
+
 ## Independent Impeccable Audit — 2026-09-30
 
 ### Boundary and baseline

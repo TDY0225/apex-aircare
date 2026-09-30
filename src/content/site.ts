@@ -6,11 +6,11 @@ export const brand = {
 } as const;
 
 export const navigation = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Service Areas", href: "#areas" },
-  { label: "Contact", href: "#quote" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "Service Areas", href: "/service-areas" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const serviceAreas = [
@@ -29,3 +29,8 @@ export const serviceTypes = [
   "New Installation",
   "Chemical Cleaning / Chemical Wash",
 ] as const;
+
+export const demoContact = {
+  whatsappMessage: "Hello, I would like to ask about air-conditioning service.",
+  noContactConfigured: "WhatsApp is not configured for this portfolio demo.",
+} as const;

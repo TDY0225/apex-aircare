@@ -49,7 +49,7 @@ export function SiteHeader({ whatsappHref }: { whatsappHref: string | null }) {
       </div>
       <header className="site-header">
         <div className="header-inner">
-          <Link className="brand-lockup" href="#home" onClick={closeMenu} aria-label="Apex AirCare home">
+          <Link className="brand-lockup" href="/" onClick={closeMenu} aria-label="Apex AirCare home">
             <BrandMark className="brand-mark" />
             <span>Apex AirCare</span>
           </Link>
@@ -64,7 +64,7 @@ export function SiteHeader({ whatsappHref }: { whatsappHref: string | null }) {
                 <Icon name="message" /> <span>WhatsApp</span>
               </a>
             ) : null}
-            <Link className="button button-primary header-quote" href="#quote">
+            <Link className="button button-primary header-quote" href="/contact#quote">
               Request a Quote <Icon name="arrow" />
             </Link>
             <button
@@ -102,8 +102,8 @@ export function SiteHeader({ whatsappHref }: { whatsappHref: string | null }) {
           ) : null}
           <Link
             className="mobile-nav-cta"
-            href="#quote"
-            onClick={(event) => handleMobileNavigation(event, "#quote")}
+            href="/contact#quote"
+            onClick={closeMenu}
           >
             Request a Quote <Icon name="arrow" />
           </Link>

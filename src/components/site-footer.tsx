@@ -8,7 +8,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="footer-main">
         <div className="footer-brand-column">
-          <Link className="brand-lockup footer-brand" href="#home">
+          <Link className="brand-lockup footer-brand" href="/">
             <BrandMark className="brand-mark" />
             <span>{brand.name}</span>
           </Link>
@@ -21,16 +21,16 @@ export function SiteFooter() {
         <div className="footer-link-group">
           <h2>Explore</h2>
           {navigation.slice(1, 4).map((item) => <Link key={item.label} href={item.href}>{item.label}</Link>)}
-          <Link href="#process">How it works</Link>
+          <Link href="/#process">How it works</Link>
         </div>
         <div className="footer-link-group">
           <h2>Services</h2>
-          {services.map((service) => <Link key={service.slug} href="#quote">{service.name}</Link>)}
+          {services.map((service) => <Link key={service.slug} href={`/services/${service.slug}`}>{service.name}</Link>)}
         </div>
         <div className="footer-link-group footer-areas">
           <h2>Example locations</h2>
           <p>{serviceAreas.slice(0, 4).join(" · ")}</p>
-          <Link href="#areas">See the illustrative list <Icon name="arrow" /></Link>
+          <Link href="/service-areas">See the illustrative list <Icon name="arrow" /></Link>
         </div>
       </div>
       <div className="footer-bottom">
