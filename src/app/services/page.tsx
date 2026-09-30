@@ -1,13 +1,10 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/container";
 import { PageIntro, PageShell } from "@/components/page-shell";
 import { ServiceCard } from "@/components/service-card";
 import { services } from "@/content/services";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Aircon Services",
-  description: "Explore the fictional Apex AirCare service guides for servicing, troubleshooting, installation and deeper cleaning conversations.",
-};
+export const metadata = createPageMetadata("Aircon Services", "Explore the fictional Apex AirCare service guides for servicing, troubleshooting, installation and deeper cleaning conversations.", "/services");
 
 export default function ServicesPage() {
   return (

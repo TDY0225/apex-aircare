@@ -1,15 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { Icon } from "@/components/icon";
 import { PageIntro, PageShell } from "@/components/page-shell";
 import { QuoteForm } from "@/components/quote-form";
 import { getWhatsAppHref } from "@/lib/whatsapp";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "Preview a truthful quote request and contact experience for the fictional Apex AirCare local-service concept.",
-};
+export const metadata = createPageMetadata("Contact", "Preview a truthful quote request and contact experience for the fictional Apex AirCare local-service concept.", "/contact");
 
 export default function ContactPage() {
   const whatsappHref = getWhatsAppHref();
@@ -21,7 +18,7 @@ export default function ContactPage() {
           <div className="contact-copy">
             <p className="section-kicker">Start an enquiry</p>
             <h2 id="contact-title">Tell us what you need.</h2>
-            <p>Choose a service and share a short description. The demo validates the request at a server boundary, then clearly confirms that nothing was saved or sent.</p>
+            <p>Choose a service and share a short description. Submitting sends the details to this application for server-side validation; the demo provider does not retain or forward them to an operator or lead system.</p>
             <div className="contact-options">
               <Link className="contact-option" href="/services"><Icon name="arrow" /><span><strong>Explore services</strong><small>Compare the four service guides.</small></span></Link>
               <Link className="contact-option" href="/service-areas"><Icon name="pin" /><span><strong>Review example areas</strong><small>See the illustrative Klang Valley list.</small></span></Link>

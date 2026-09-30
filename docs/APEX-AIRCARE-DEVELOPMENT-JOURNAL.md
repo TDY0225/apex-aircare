@@ -331,3 +331,52 @@ Audit closeout is complete. Phase 3 is ready for a separate authorization decisi
 ### Current gate
 
 Phase 3.5 review is complete and documented in `docs/APEX-AIRCARE-PHASE-3.5-REVIEW.md`. The owner accepted the review; Phase 3.5B is not required. P3 items remain deferred to production-readiness/release validation. Do not fix findings, deploy, or begin Phase 4 without separate authorization.
+
+## Phase 4A Production Readiness — 2026-09-30
+
+### Baseline and authorization
+
+- Resumed at the accepted Phase 3.5 closeout: `cbd80e90ef88b8d56ba1e5dc74ac95fd5ad24a03`; `main`, `HEAD`, and `origin/main` matched, with no tracked changes.
+- Kept the existing `docs/phase-2.5a-evidence/` directory local and untracked.
+- Implemented only Phase 4A production hardening. No deployment, Phase 4B, live integration, redesign, added interaction dependency, or new Bencho block was started.
+
+### Changes and findings
+
+- Hardened the quote API with streaming 8 KB body enforcement, strict JSON media-type parsing, invalid UTF-8 rejection, no-store response headers, and extracted deterministic 800 ms timing validation.
+- Added eight Node built-in API regression tests covering success/no PII echo, field validation, unsupported content type/JSONP, malformed JSON, foreign origin, honeypot, oversized chunked body without Content-Length, and exact/too-fast/future timing.
+- Corrected quote/privacy copy to disclose server transmission for validation and distinguish the no-op app provider from hosting-platform request processing.
+- Added accessible branded 404/error recovery UI, route titles/descriptions and origin-aware canonical/social metadata, a locally generated fictional-demo OG image endpoint, and `/api/` robots exclusion. `noindex,nofollow` and no business schema remain.
+- Restricted optional WhatsApp numbers to 8–15 digits; no number or lead destination is configured.
+- Browser QA exposed 113 px overflow in service-detail pages at 768 px. A tablet single-column detail layout fixed it; final production-browser measurements show zero horizontal overflow.
+- Updated README for Phase 4 behavior, environment variables, privacy, security boundary, Vercel readiness, and deferred real-client integration requirements.
+
+### Validation and capability state
+
+| Check | Result |
+|---|---|
+| `npm test` | PASS — 8/8 tests |
+| `npm run lint` | PASS |
+| `npx tsc --noEmit` | PASS |
+| `npm run build` | PASS — public pages and detail pages statically generated; quote API remains dynamic |
+| `npm audit` and `npm audit --omit=dev` | PASS — 0 vulnerabilities |
+| HTTP routes | PASS — public routes 200, unknown page and service slug 404, OG endpoint PNG, robots text |
+| Production browser | PASS — 11 routes at 375/768/1024/1440 px, no measured overflow, one H1 per page |
+| Keyboard/form/browser console | PASS — skip link, mobile menu Escape/focus return, accessible invalid state, successful synthetic response, no console warnings/errors |
+| axe/WCAG/screen reader/Lighthouse/CWV | NOT PERFORMED; do not claim compliance or scores |
+
+- No `.env*`, key/certificate, debug log, or screenshot artifact was added. Application code has no analytics SDK, app-managed tracking cookies, or browser storage use. The full dependency audit reported zero vulnerabilities.
+- `package.json` adds a test script only; no dependency or lockfile changed. No Vercel resources were modified.
+- **Hydration:** **NOT REPRODUCED / ROOT CAUSE UNKNOWN**; no root cause or fix is claimed.
+- **IMP-001:** **DEFERRED**, P3, until production LCP/CWV evidence exists.
+- **Bencho:** **INSPECTED + CONCEPT ADOPTED; no IMPLEMENTED BLOCK**.
+- Complete Impeccable suite, WCAG certification, screen-reader evaluation, Lighthouse, and field CWV were not run.
+
+### Findings and release recommendation
+
+- P0: none. P1: none.
+- P2: apply owner-approved edge request-rate limiting before enabling real lead delivery; the portfolio demo has no lead sink and app-level honeypot/timing checks are not a distributed limiter.
+- P3: retain IMP-001 as deferred; preserve the hydration unknown status and formal accessibility/performance evidence limitations.
+- Production-readiness evidence supports the Phase 4B portfolio-deployment decision. The implementation did not deploy or begin Phase 4B.
+- Reusable Nexus lessons recorded in `docs/APEX-AIRCARE-PHASE-4A-PRODUCTION-READINESS.md`: prove baselines, separate phase and deployment gates, implement narrow evidence-backed fixes, test API boundaries deterministically, distinguish app behavior from host processing, and label capability limits truthfully.
+
+The complete audit evidence and environment-variable list are in `docs/APEX-AIRCARE-PHASE-4A-PRODUCTION-READINESS.md`.

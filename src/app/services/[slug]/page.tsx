@@ -6,6 +6,7 @@ import { Container } from "@/components/container";
 import { Icon } from "@/components/icon";
 import { PageShell } from "@/components/page-shell";
 import { getServiceBySlug, services } from "@/content/services";
+import { createPageMetadata } from "@/lib/metadata";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -16,8 +17,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = getServiceBySlug(slug);
-  if (!service) return { title: "Service guide" };
-  return { title: service.name, description: service.detail };
+  if (!service) return createPageMetadata("Service guide", "Fictional Apex AirCare portfolio service guide.", `/services/${slug}`);
+  return createPageMetadata(service.name, service.detail, `/services/${slug}`);
 }
 
 export default async function ServiceDetailPage({ params }: Props) {

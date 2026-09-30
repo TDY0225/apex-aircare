@@ -62,7 +62,7 @@ export function QuoteForm() {
       }
 
       setFormState("success");
-      setMessage(result.message ?? "Demo only: your details were not saved or sent.");
+      setMessage(result.message ?? "Demo only: your details were sent to this application for validation and were not retained or forwarded.");
     } catch {
       setFormState("error");
       setMessage("The demo could not reach its validation boundary. Please try again.");
@@ -77,7 +77,7 @@ export function QuoteForm() {
       <div className="form-heading">
         <span className="form-step-label">ENQUIRY PREVIEW</span>
         <h3>Tell us what you need.</h3>
-        <p>Required fields are marked. Details stay in this page and are never submitted.</p>
+        <p>Required fields are marked. Submitting sends these details to this application for validation; the demo does not retain or forward them.</p>
       </div>
       <div className="form-row">
         <div className="form-field">

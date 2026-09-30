@@ -1,14 +1,11 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/container";
 import { AreaIllustration } from "@/components/area-illustration";
 import { Icon } from "@/components/icon";
 import { PageIntro, PageShell } from "@/components/page-shell";
 import { serviceAreas } from "@/content/site";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Service Areas",
-  description: "Explore the illustrative Kuala Lumpur and Klang Valley locations used in the fictional Apex AirCare portfolio concept.",
-};
+export const metadata = createPageMetadata("Service Areas", "Explore the illustrative Kuala Lumpur and Klang Valley locations used in the fictional Apex AirCare portfolio concept.", "/service-areas");
 
 export default function ServiceAreasPage() {
   return (

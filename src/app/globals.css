@@ -315,6 +315,15 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .form-error-summary:focus { outline: 3px solid rgb(180 35 24 / .2); outline-offset: 2px; }
 .form-submit:disabled { cursor: progress; opacity: .7; }
 .hp-field { position: absolute !important; width: 1px !important; height: 1px !important; overflow: hidden !important; clip: rect(0 0 0 0) !important; white-space: nowrap !important; }
+.not-found .hero-actions { margin-top: 1.5rem; }
+.app-error { min-height: 70vh; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding-block: 4rem; }
+.app-error h1 { max-width: 760px; margin: .7rem 0; color: var(--navy); font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.08; }
+.app-error > p:not(.section-kicker) { max-width: 620px; color: var(--muted); line-height: 1.7; }
+.app-error .hero-actions { margin-top: 1rem; }
+@media (max-width: 900px) {
+  .detail-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+  .detail-photo-wrap { width: 100%; min-height: 0; aspect-ratio: 1.45 / 1; }
+}
 
 @media (min-width: 1500px) { .hero-grid { gap: 6rem; } }
 @media (max-width: 1050px) {

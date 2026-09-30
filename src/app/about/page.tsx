@@ -1,12 +1,9 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import { Container } from "@/components/container";
 import { Icon } from "@/components/icon";
 import { PageIntro, PageShell } from "@/components/page-shell";
 
-export const metadata: Metadata = {
-  title: "About the Concept",
-  description: "Learn about the fictional Apex AirCare service philosophy and the portfolio-demo boundaries behind the experience.",
-};
+export const metadata = createPageMetadata("About the Concept", "Learn about the fictional Apex AirCare service philosophy and the portfolio-demo boundaries behind the experience.", "/about");
 
 export default function AboutPage() {
   return (
@@ -29,7 +26,7 @@ export default function AboutPage() {
       <section className="truth-section" aria-labelledby="truth-title">
         <Container className="truth-grid">
           <div><p className="section-kicker section-kicker-light">Portfolio boundary</p><h2 id="truth-title">This is a fictional demo.</h2></div>
-          <p>Apex AirCare does not claim real technicians, reviews, credentials, response times, prices, opening hours, coverage or customer records. The quote flow validates data for demonstration and does not save or send it.</p>
+          <p>Apex AirCare does not claim real technicians, reviews, credentials, response times, prices, opening hours, coverage or customer records. The quote form sends details to this application for validation; the demo provider does not retain or forward them.</p>
         </Container>
       </section>
     </PageShell>

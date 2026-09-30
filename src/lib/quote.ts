@@ -1,8 +1,6 @@
 import { serviceTypes } from "@/content/site";
 
 export const QUOTE_MAX_BODY_BYTES = 8_000;
-export const QUOTE_MIN_SUBMISSION_MS = 800;
-
 export type QuoteInput = {
   name: string;
   phone: string;

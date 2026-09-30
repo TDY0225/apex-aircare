@@ -11,6 +11,9 @@ import { SiteHeader } from "@/components/site-header";
 import { serviceAreas } from "@/content/site";
 import { services } from "@/content/services";
 import { getWhatsAppHref } from "@/lib/whatsapp";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata = createPageMetadata("Aircon Service Concept", "A fictional portfolio concept for air-conditioning servicing, repair, installation and cleaning in Kuala Lumpur and Klang Valley.", "/");
 
 export default function Home() {
   const whatsappHref = getWhatsAppHref();
@@ -214,8 +217,8 @@ export default function Home() {
               <h2 id="quote-title" tabIndex={-1}>Get a clearer starting point.</h2>
               <p>
                 Use the form to preview a complete quote flow. This fictional
-                demo validates the request on the server boundary, but it does
-                not send or save the information entered here.
+                demo sends these details to this application for validation. The
+                demo does not retain them or forward them to a lead system.
               </p>
               <div className="demo-contact-card">
                 <span className="demo-contact-icon"><Icon name="message" /></span>
